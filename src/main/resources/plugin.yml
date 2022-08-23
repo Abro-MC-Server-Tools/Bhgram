@@ -1,0 +1,14 @@
+name: Bhgram
+version: '${version}'
+main: ru.bronuh.bhgram.Bhgram
+api-version: 1.19
+prefix: [ Bhgram ]
+authors: [ Bronuh ]
+description: Простой как камень плагин, позволяющий взаимодействовать с Telegram ботом
+website: localhost
+
+commands:
+  tsend:
+    description: Отправляет сообщение в телеграм
+    usage: /<command> [message]
+    aliases: [ts]
