@@ -24,4 +24,7 @@ public class Config {
 
 	// Использовать ли указанное в конфиге имя сервера вместо вычисления его адреса
 	public boolean useServerName = false;
+
+	// Отправлять ли все сообщения из Telegram в чат
+	public boolean streamTelegram = true;
 }

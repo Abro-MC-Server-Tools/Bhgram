@@ -45,6 +45,7 @@ public final class Bhgram extends JavaPlugin {
 	public void onDisable() {
 		// Plugin shutdown logic
 		// TODO: Остановка бота занимает реально дохрена времени. Надо посмотреть
+		// TODO: Покурить вебхуки
 		botSession.stop();
 	}
 

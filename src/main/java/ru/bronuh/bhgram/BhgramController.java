@@ -1,11 +1,9 @@
 package ru.bronuh.bhgram;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -15,10 +13,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
+
+/**
+ * TODO: Временный конфиг
+ * TODO: Отключение сообщений со стороны Telegram
+ * TODO: Автоматическая отправка всех сообщений из TG в MC
+ * TODO: Индивидуальные настройки для пользователей
+ */
 public class BhgramController extends TelegramLongPollingBot {
 	PluginContext context;
 	private String dataDir;
@@ -51,6 +54,13 @@ public class BhgramController extends TelegramLongPollingBot {
 					log.info(message.getFrom().getUserName()+" (ChatId: "+message.getChatId()+"): "+text);
 					for (Player player : Bukkit.getOnlinePlayers()) {
 						player.sendMessage(Component.text(update.getMessage().getFrom().getUserName()+": "+text.replace("/mc ",""), context.tgColor));
+					}
+				}else{
+					if(context.getConfig().streamTelegram){
+						log.info(message.getFrom().getUserName()+" (ChatId: "+message.getChatId()+"): "+text);
+						for (Player player : Bukkit.getOnlinePlayers()) {
+							player.sendMessage(Component.text(update.getMessage().getFrom().getUserName()+": "+text.replace("/mc ",""), context.tgColor));
+						}
 					}
 				}
 			}
