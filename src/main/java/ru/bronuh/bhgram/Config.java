@@ -2,7 +2,7 @@ package ru.bronuh.bhgram;
 
 public class Config {
 	// Токен для подключения к боту
-	public String token = "";
+	public String token = "<notoken>";
 
 	// Отправлять ли уведомления о подключении игроков в Telegram
 	public boolean notifyConnection = true;
@@ -18,4 +18,10 @@ public class Config {
 
 	// Имя бота
 	public String botName = "SAMPLE_BOT";
+
+	// Пользовательское имя сервера, выводимое вместо IP
+	public String serverName = "SAMPLE_SERVER";
+
+	// Использовать ли указанное в конфиге имя сервера вместо вычисления его адреса
+	public boolean useServerName = false;
 }

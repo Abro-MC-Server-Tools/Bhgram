@@ -50,9 +50,10 @@ shadowJar {
     classifier ''
     relocate 'org.telegram', "ru.bronuh.bhgram.org.telegram"
     minimize()
-    dependencies {
+
+    /*dependencies {
         exclude(dependency {it.moduleGroup == 'com'})
-    }
+    }*/
 
 
     def localEnv = System.getenv('DEV_ENV')

@@ -37,7 +37,7 @@ public class SendExecutor extends BaseCommand {
 		int argsCount = args.length;
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("*").append(senderName).append('@').append(getServerName()).append(":* ");
+		builder.append("*").append(senderName).append('@').append(controller.getServerName()).append(":* ");
 		for (String arg : args) {
 			builder.append(arg).append(" ");
 		}
@@ -46,23 +46,6 @@ public class SendExecutor extends BaseCommand {
 		return true;
 	}
 
-	/**
-	 * Костыль для получения адреса сервера
-	 * TODO: добавить настройку в конфиге, позволяющую назначить имя серверу
-	 * @return ip:port
-	 */
-	private String getServerName(){
-		URL whatismyip = null;
-		String machineIP = "<unknown>";
-		try {
-			whatismyip = new URL("http://checkip.amazonaws.com");
-			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
-			machineIP = in.readLine();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		return machineIP+":"+context.getPluginInstance().getServer().getPort();
-	}
 
 }

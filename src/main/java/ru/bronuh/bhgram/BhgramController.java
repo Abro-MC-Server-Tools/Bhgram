@@ -11,7 +11,10 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -70,5 +73,27 @@ public class BhgramController extends TelegramLongPollingBot {
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	/**
+	 * Костыль для получения адреса сервера
+	 * @return ip:port
+	 */
+	public String getServerName(){
+		if(context.getConfig().useServerName){
+			return context.getConfig().serverName;
+		}
+		URL whatismyip = null;
+		String serverName = "<unknown>";
+		try {
+			whatismyip = new URL("http://checkip.amazonaws.com");
+			BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
+			serverName = in.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return serverName +":"+context.getPluginInstance().getServer().getPort();
 	}
 }
