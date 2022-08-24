@@ -2,6 +2,7 @@ package ru.bronuh.bhgram;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -53,8 +54,11 @@ public class EventsListener implements Listener {
 		if(context.getConfig().streamChat){
 			Player player = event.getPlayer();
 			String name = player.getName();
+			StringBuilder builder = new StringBuilder();
 
-			controller.sendTgMessage("*"+name+"@"+controller.getServerName()+"*: "+event.message().toString());
+			builder.append("*").append(name).append('@').append(controller.getServerName()).append(":* ").append(((TextComponent) event.message()).content());
+			//context.getLog().info(builder.toString());
+			controller.sendTgMessage(builder.toString());
 		}
 	}
 }

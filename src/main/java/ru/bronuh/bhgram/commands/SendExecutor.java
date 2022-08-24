@@ -1,7 +1,10 @@
 package ru.bronuh.bhgram.commands;
 
+import net.kyori.adventure.text.Component;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import ru.bronuh.bhgram.BhgramController;
 import ru.bronuh.bhgram.PluginContext;
@@ -41,8 +44,12 @@ public class SendExecutor extends BaseCommand {
 		for (String arg : args) {
 			builder.append(arg).append(" ");
 		}
-		controller.sendTgMessage(builder.toString());
 
+		String text = builder.toString();
+		controller.sendTgMessage(text);
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			player.sendMessage(Component.text(text, context.tgColor));
+		}
 		return true;
 	}
 

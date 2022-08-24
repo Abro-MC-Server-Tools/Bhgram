@@ -30,6 +30,7 @@ public final class Bhgram extends JavaPlugin {
 		loadConfig();
 		try {
 			botsApi = new TelegramBotsApi(DefaultBotSession.class);
+
 			botSession = botsApi.registerBot(controller);
 		} catch (Exception e) {
 			e.printStackTrace();
