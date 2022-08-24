@@ -23,25 +23,28 @@ public class EventsListener implements Listener {
 
 	@EventHandler(ignoreCancelled = true ,priority = EventPriority.LOWEST)
 	public void playerJoinEvent(PlayerJoinEvent event) {
-		context.getLog().info(event.getPlayer().getName()+" зашел на сервер.");
-		Player player = event.getPlayer();
-		String name = player.getName();
+		if(context.getConfig().notifyConnection){
+			context.getLog().info(event.getPlayer().getName()+" зашел на сервер.");
+			Player player = event.getPlayer();
+			String name = player.getName();
 
-		controller.sendTgMessage("*"+name+"@"+controller.getServerName()+"* зашел на сервер");
-		// TODO: Допили меня
+			controller.sendTgMessage("*"+name+"@"+controller.getServerName()+"* зашел на сервер");
+		}
 	}
 
 
-	@EventHandler(priority = EventPriority.LOWEST)
+
+	// Нет простого способа сделать это. Названия достижений хранятся у клиентов
+	/*@EventHandler(priority = EventPriority.LOWEST)
 	public void playerAdvancementEvent(PlayerAdvancementDoneEvent event){
-		// context.getLog().info(event.getPlayer().getName()+" зашел на сервер.");
 		if(context.getConfig().sendAdvancements){
 			Player player = event.getPlayer();
 			String name = player.getName();
 
-			controller.sendTgMessage("*"+name+"@"+controller.getServerName()+"* получил достижение *"+event.getEventName()+"*");
+			context.getLog().info("*"+name+"@"+controller.getServerName()+"* получил достижение *"+event.getAdvancement().getKey().getKey()+"*");
+			//controller.sendTgMessage("*"+name+"@"+controller.getServerName()+"* получил достижение *"+event.getAdvancement().getKey().getKey()+"*");
 		}
-	}
+	}*/
 
 
 

@@ -11,7 +11,7 @@ public class Config {
 	public boolean streamChat = false;
 
 	// Отправлять ли уведомления о полученных достижениях
-	public boolean sendAdvancements = false;
+	// public boolean sendAdvancements = false;
 
 	// Чат, в который будут отправляться уведомления
 	public String targetChatId = "0";
